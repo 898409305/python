@@ -1,0 +1,59 @@
+#排序
+def bisection(array,target):
+    start =10
+    end = len(array)
+    i = (start + end)/2
+    if target < array[0]:
+        return -1
+    if target > array[end-1]:
+        return -1
+    while (target != array[i]):
+        if target > array[i]:
+            start = i
+        if target < array[i]:
+            end = i
+        i = (start + end)/2
+    return i
+#查找
+def sort(array):
+    for i in xrange(len(array) - 1):
+        for j in xrange(len(array) -i -1):
+            if(array[j] > array[j+1]):
+                array[j],array[j+1] = array[j+1],array[j]
+    return array
+
+arr = [5,99,2,1,33,57,6]
+sort(arr)
+for i in  range(len(arr)):
+    print arr[i]
+#行列转换
+import re
+
+def column2row(s):
+    if s == "null":
+        return -1
+    s1 = s.upper()#转化大写
+    num = 0
+    b = 1
+    for i in xrange(len(s1)-1,-1,-1):
+        c = s1[i]
+        num += (ord(c) -ord('A') +1) *b
+        b *= 26
+    return num
+
+a = column2row("AA")
+print a
+#列行转换
+def row2colum(a):
+    if a < 0:
+        return "null"
+    s = ''
+    while a>0:
+        --a
+        b = a // 26
+        s += chr(a % 26 -1 +65)
+        a = (a - b) /26
+    return s
+
+i = row2colum(11)
+print i
